@@ -1,33 +1,31 @@
 # Interactive-Digital-Portfolio
-Interactive Digital Portfolio
-This is a modern and responsive digital portfolio website built with HTML, CSS (using Tailwind CSS), and JavaScript. Its purpose is to showcase my skills and projects in an engaging and interactive way.
 
-Features
-Modern Design: A clean, minimal, and professional user interface using Tailwind CSS.
+This is a modern and responsive **digital portfolio website** built with **HTML**, **CSS**, and **JavaScript**.  
+It showcases my skills and projects in an engaging and interactive way.
 
-Smooth Navigation: Seamless scrolling with JavaScript that allows the user to easily jump between different sections.
+---
 
-Responsive Layout: Fully optimized for viewing on desktop, tablet, and mobile devices.
+## ✨ Features
+- **Modern Design** – Clean, minimal, and professional UI using CSS.  
+- **Smooth Navigation** – Seamless scrolling with JavaScript for easy section jumps.  
+- **Responsive Layout** – Fully optimized for desktop, tablet, and mobile devices.  
+- **Sections** – Includes dedicated sections for:
+  - About Me  
+  - Skills  
+  - Projects  
+  - Contact  
 
-Sections: Includes dedicated sections for "About Me," "Skills," "Projects," and "Contact."
+---
 
-Technologies Used
-HTML5: For the structure of the website.
+## 🛠️ Technologies Used
+- **HTML5** – Website structure  
+- **Tailwind CSS** – Utility-first CSS framework for rapid and responsive styling  
+- **JavaScript** – Smooth scrolling and interactivity  
 
-Tailwind CSS: A utility-first CSS framework for rapid and responsive styling.
+---
 
-JavaScript: To add smooth scrolling and interactivity to the website.
+## 🚀 How to Run Locally
 
-How to Run Locally
-Clone this repository:
-
-git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
-
-Navigate to the project directory:
-
-cd interactive-digital-portfolio
-
-Open the index.html file in your favorite web browser.
-
-Author
-Riya Rani
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/RiyaRani23/Interactive-Digital-Portfolio.git
