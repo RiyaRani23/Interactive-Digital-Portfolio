@@ -1043,8 +1043,8 @@ body {
     position: absolute; /* Restore absolute positioning */
     right: 5%; 
     bottom: 10%; 
-    width: 400px; 
-    max-width: 500px; 
+    width: 350px; 
+    max-width: 450px; 
     order: 0; /* Clear mobile order */
   }
   
@@ -1098,6 +1098,6 @@ body {
     padding: 10rem 0 2rem;
   }
   .home__img {
-    width: 550px;
+    width: 450px;
   }
 }
