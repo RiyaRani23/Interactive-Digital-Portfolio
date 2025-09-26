@@ -126,7 +126,7 @@ section {
     height: 100%;
     padding: 2rem;
     flex-direction: column;
-    background-color: #f2f4f8;
+    background-color: #5b748b;
     transition: 0.5s;
   }
 }
@@ -137,7 +137,7 @@ section {
 
 .nav__link {
   position: relative;
-  color:#7a8ffa;
+  color:#ffffff;
   text-decoration: none;
   font-weight: 500;
 }
