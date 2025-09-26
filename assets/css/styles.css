@@ -2,6 +2,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 /*===== VARIABLES CSS =====*/
  
+html {
+  scroll-behavior: smooth;
+  font-size: 100%; 
+}
+
 :root {
   --header-height: 3rem;
   --font-semi: 600;
@@ -25,14 +30,6 @@
   /*===== z index =====*/
   --z-back: -10;
   --z-fixed: 100;
-}
-@media screen and (min-width: 968px) {
-  :root {
-    --big-font-size: 3.5rem;
-    --h2-font-size: 2rem;
-    --normal-font-size: 1rem;
-    --smaller-font-size: .875rem;
-  }
 }
 
 /*===== BASE =====*/
@@ -117,19 +114,6 @@ section {
   gap: 2rem;
 }
 
-@media screen and (max-width: 767px) {
-  .nav__menu {
-    position: fixed;
-    top: var(--header-height);
-    right: -100%;
-    width: 80%;
-    height: 100%;
-    padding: 2rem;
-    flex-direction: column;
-    background-color: #5b748b;
-    transition: 0.5s;
-  }
-}
 
 .nav__item {
   margin-bottom: var(--mb-4);
@@ -207,21 +191,22 @@ section {
 /*===== HOME =====*/
 .home {
   position: relative;
-  width: 100vw; 
+  width: 100%;
   min-height:  calc(100vh - var(--header-height)); 
-  padding: 2rem;
+  padding: 2rem 0;
    margin-top: 0;
   background-color: hsl(0, 0%, 100%);
   color: #0e0e0f;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   overflow: hidden;
 }
 
 .home__data {
-  max-width: 600px;
+  max-width: 50%; 
   z-index: 2; 
+  padding-left: var(--mb-4); 
 }
 
 .home__title-color {
@@ -238,9 +223,9 @@ section {
 .home__social {
   display: flex;
   margin-top: 2rem;
-  flex-direction: column;
-   gap: 1.5rem; 
   flex-direction: row;
+   gap: 1.5rem; 
+   align-items: center;
   z-index: 2;
 }
 
@@ -248,6 +233,8 @@ section {
  color: #033ca0;
   font-size: 2.5rem; 
   transition: transform 0.3s, color 0.3s;
+  
+
 }
 
 .home__social-icon:hover {
@@ -259,8 +246,8 @@ section {
   position: absolute;
   right: 0;
   bottom: 0;
-  width: 50%; 
-  max-width: 600px; 
+  width: 45%; 
+  max-width: 450px; 
   height: auto;
   z-index: 1;
 }
@@ -272,7 +259,7 @@ section {
 }
 
 .home__blob-img {
-  width: 360px;
+  width: 100%;
   border-radius: 50%; 
   object-fit: cover;
   display: block;
@@ -924,56 +911,86 @@ body {
     color: #888;
 }
 
-/* ===== MEDIA QUERIES===== */
-@media screen and (max-width: 320px) {
+/* ===== CONSOLIDATED MEDIA QUERIES ===== */
+
+/* ========================================================================= */
+/* 1. MOBILE & SMALL TABLET LAYOUT (Max-width: 767px) */
+/* This block stacks content vertically and controls the mobile menu */
+/* ========================================================================= */
+@media screen and (max-width: 767px) {
+  
+  /* --- Home Section Fix: Force Stacking --- */
   .home {
-    row-gap: 2rem;
-  }
-  .home__img {
-    width: 200px;
-  }
-}
-@media screen and (min-width: 576px) {
-  .home {
-    padding: 4rem 0 2rem;
-  }
-  .home__social {
-    padding-top: 0;
-    padding-bottom: 2.5rem;
-    flex-direction: row;
-    align-self: flex-end;
-  }
-  .home__social-icon {
-    margin-bottom: 0;
-    margin-right: var(--mb-4);
-  }
-  .home__img {
-    width: 300px;
-    bottom: 25%;
-  }
-  .about__container {
-    grid-template-columns: repeat(2, 1fr);
-    align-items: center;
-    text-align: initial;
-  }
-  .skills__container {
-    grid-template-columns: 0.7fr;
+    flex-direction: column; 
     justify-content: center;
-    column-gap: 1rem;
+    align-items: center;
+    padding-top: 5rem;
+    text-align: center;
+    min-height: auto;
   }
-  .work__container {
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 2rem;
-    padding-top: 2rem;
+
+  .home__data {
+    text-align: center;
+    max-width: 90%;
+    padding-left: 0;
+    order: 2; /* Place data after image for small screens */
   }
-  .contact__form {
-    width: 360px;
-    padding-top: 2rem;
+
+  /* Reposition and Rescale the Image Container */
+  .home__img {
+    position: relative; /* Override absolute positioning */
+    width: 60%; 
+    max-width: 300px;
+    margin: 2rem auto 0; 
+    order: 1; /* Place image first */
   }
-  .contact__container {
-    justify-items: center;
+
+  .home__blob-img {
+    width: 100%; 
+  }
+
+  /* Center Social Icons */
+  .home__social {
+    justify-content: center;
+    flex-direction: row;
+    padding-bottom: 2rem;
+    order: 3;
+    /* Ensure icons aren't huge on mobile */
+    margin-right: var(--mb-4); 
+  }
+
+  /* Mobile Navigation Menu Styling */
+  .nav__menu {
+    position: fixed;
+    top: var(--header-height);
+    right: -100%;
+    width: 80%;
+    height: 100%;
+    padding: 2rem;
+    flex-direction: column;
+    background-color: #5b748b;
+    transition: 0.5s;
+  }
+
+  .nav__menu.show {
+    right: 0 !important; 
+}
+  
+  /* Mobile-specific font adjustment */
+  .home__title-color, .home_prof {
+    font-size: 2rem;
+  }
+  
+  /* Footer stacking for mobile */
+  .footer__container {
+    flex-direction: column;
   }
 }
+
+/* ========================================================================= */
+/* 2. TABLET & DESKTOP LAYOUT (Min-width: 768px) */
+/* This block restores the side-by-side layout and enables desktop features */
+/* ========================================================================= */
 @media screen and (min-width: 768px) {
   body {
     margin: 0;
@@ -989,11 +1006,13 @@ body {
     width: 80px;
     top: 3rem;
   }
+  
+  /* --- Navigation Restore --- */
   .nav {
     height: calc(var(--header-height) + 1.5rem);
   }
   .nav__list {
-    display: flex;
+    display: flex; /* Show desktop menu */
     padding-top: 0;
   }
   .nav__item {
@@ -1001,16 +1020,42 @@ body {
     margin-bottom: 0;
   }
   .nav__toggle {
-    display: none;
+    display: none; /* Hide hamburger icon */
   }
 
+  /* --- Home Section Restore (Side-by-Side) --- */
   .home {
-    padding: 8rem 0 2rem;
+    display: flex; /* Ensure it is flex */
+    flex-direction: row; /* Side-by-side */
+    justify-content: flex-start;
+    align-items: center; 
+    padding: 8rem 0 2rem; /* Restore desktop padding */
   }
+  
+  .home__data {
+    text-align: initial;
+    max-width: 55%; 
+    padding-left: 0;
+    order: 0; /* Clear mobile order */
+  }
+
   .home__img {
-    width: 400px;
-    bottom: 10%;
+    position: absolute; /* Restore absolute positioning */
+    right: 5%; 
+    bottom: 10%; 
+    width: 400px; 
+    max-width: 500px; 
+    order: 0; /* Clear mobile order */
   }
+  
+  .home__social {
+    display: flex;
+    flex-direction: row; 
+    gap: 1.5rem;
+    /* Removed redundant rules from the extra block */
+  }
+
+  /* --- Other Section Adjustments --- */
   .about__container {
     padding-top: 2rem;
   }
@@ -1018,17 +1063,33 @@ body {
     width: 300px;
   }
   .skills__container {
+    /* Combined from two separate 768px blocks */
     grid-template-columns: repeat(2, 1fr);
     column-gap: 2rem;
     align-items: center;
     text-align: initial;
+    flex-direction: row; /* For the skills layout fix */
+    justify-content: space-around;
+    align-items: flex-start;
   }
   .work__container {
     grid-template-columns: repeat(3, 1fr);
     column-gap: 2rem;
   }
 }
+
+/* ========================================================================= */
+/* 3. LARGE DESKTOP ADJUSTMENTS (Min-width: 992px) */
+/* This block finalizes large screen sizes */
+/* ========================================================================= */
 @media screen and (min-width: 992px) {
+    /* Merged variables from 968px block */
+   :root {
+    --big-font-size: 3rem; 
+    --h2-font-size: 2rem;
+    --normal-font-size: 1rem;
+    --smaller-font-size: .875rem;
+   }
   .bd-grid {
     margin-left: auto;
     margin-right: auto;
@@ -1037,6 +1098,6 @@ body {
     padding: 10rem 0 2rem;
   }
   .home__img {
-    width: 450px;
+    width: 550px;
   }
 }
