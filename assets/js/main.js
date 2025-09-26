@@ -1,19 +1,80 @@
+/*===== TYPED TEXT EFFECT =====*/
+const typedTextSpan = document.getElementById("typed-text");
+const roles = ["Front-End Developer", "Tech Enthusiast", "Problem Solver","Lifelong Learner","Debugger"];
+let roleIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+const typingSpeed = 100; // ms per character
+const deletingSpeed = 50; // ms per character
+const delayBetweenRoles = 1500; // ms
+
+function typeText() {
+  const currentRole = roles[roleIndex];
+
+  if (!isDeleting) {
+    // Typing: Add one character
+    typedTextSpan.textContent = currentRole.substring(0, charIndex + 1);
+    charIndex++;
+
+    if (charIndex === currentRole.length) {
+      isDeleting = true;
+      setTimeout(typeText, delayBetweenRoles);
+    } else {
+      setTimeout(typeText, typingSpeed);
+    }
+  } else {
+    // Deleting: Remove one character
+    typedTextSpan.textContent = currentRole.substring(0, charIndex - 1);
+    charIndex--;
+
+    if (charIndex === 0) {
+      isDeleting = false;
+      roleIndex = (roleIndex + 1) % roles.length;
+      setTimeout(typeText, 500); // Short pause before starting next role
+    } else {
+      setTimeout(typeText, deletingSpeed);
+    }
+  }
+}
+
+// Start the typing animation
+typeText();
+
 /*===== MENU SHOW =====*/ 
 const blob = document.querySelector(".home__img");
 
 // Floating animation
-let pos = 0;
-let direction = 1; 
+let homePos = 0; 
+let homeDirection = 1; 
+
 
 function floatBlob() {
-  if(pos > 15) direction = -1;
-  if(pos < 0) direction = 1;
-  pos += direction * 0.3;
-  blob.style.transform = `translateY(-${pos}px)`;
+  if(homePos > 15) homeDirection = -1;
+  if(homePos < 0) homeDirection = 1;
+  homePos += homeDirection * 0.3;
+  blob.style.transform = `translateY(-${homePos}px)`;
   requestAnimationFrame(floatBlob);
 }
 
 floatBlob();
+
+// Float animation for About image
+const aboutImg = document.querySelector(".about__img img");
+
+
+let aboutPos = 0;
+let aboutDirection = 1; 
+
+function floatAbout() {
+  if(aboutPos > 10) aboutDirection = -1;
+  if(aboutPos < 0) aboutDirection = 1;
+  aboutPos += aboutDirection * 0.2;
+  aboutImg.style.transform = `translateY(-${aboutPos}px) scale(1.05)`;
+  requestAnimationFrame(floatAbout);
+}
+
+floatAbout();
+
 
 const buttons = document.querySelectorAll(".button");
 
@@ -38,21 +99,6 @@ buttons.forEach(button => {
   });
 });
 
-// Float animation for About image
-const aboutImg = document.querySelector(".about__img img");
-
-
-let dir = 1;
-
-function floatAbout() {
-  if(pos > 10) dir = -1;
-  if(pos < 0) dir = 1;
-  pos += dir * 0.2;
-  aboutImg.style.transform = `translateY(-${pos}px) scale(1.05)`;
-  requestAnimationFrame(floatAbout);
-}
-
-floatAbout();
 
 const nameText = document.getElementById("riya-name");
 const colors = ["#1e6bf0ff", "#e09431ff", "#ec10b2ff", "#4ccd50ff", "#7519a3ff", "#de1310ff"]; 
@@ -61,7 +107,7 @@ let colorIndex = 0;
 function changeColor() {
   nameText.style.color = colors[colorIndex];
   colorIndex = (colorIndex + 1) % colors.length;
-  setTimeout(changeColor, 1000); // change every 1 second
+  setTimeout(changeColor, 2000); 
 }
 
 changeColor();
@@ -102,19 +148,25 @@ document.getElementById('contactForm').addEventListener('submit', async function
     const form = event.target;
     const formData = new FormData(form);
     const formBtn = form.querySelector('.submit-btn');
+    const statusMessage = document.getElementById('form-status'); 
 
-    // Basic client-side validation
+    // Basic validation
     if (!form.checkValidity()) {
-        alert('Please fill out all fields.');
+        if(statusMessage) {
+            statusMessage.textContent = 'Please fill out all fields.';
+            statusMessage.style.color = 'red';
+        } else {
+            alert('Please fill out all fields.');
+        }
         return;
     }
 
     formBtn.textContent = 'Sending...';
     formBtn.disabled = true;
+    if(statusMessage) statusMessage.textContent = '';
 
     try {
-        // Here you would replace the code with your form submission logic
-        // For example, using a service like Formspree:
+        
         const response = await fetch('https://formspree.io/f/your_form_id', {
             method: 'POST',
             body: formData,
@@ -124,17 +176,35 @@ document.getElementById('contactForm').addEventListener('submit', async function
         });
 
         if (response.ok) {
-            alert('Your message has been sent successfully!');
+            if(statusMessage) {
+                statusMessage.textContent = 'Your message has been sent successfully! Thank you.';
+                statusMessage.style.color = 'green';
+            } else {
+                alert('Your message has been sent successfully!');
+            }
             form.reset();
         } else {
-            alert('Oops! There was a problem sending your message. Please try again later.');
+            if(statusMessage) {
+                statusMessage.textContent = 'Oops! There was a problem sending your message. Please try again later.';
+                statusMessage.style.color = 'red';
+            } else {
+                alert('Oops! There was a problem sending your message. Please try again later.');
+            }
         }
     } catch (error) {
         console.error('Submission error:', error);
-        alert('An unexpected error occurred. Please try again.');
-    } finally {
+        if(statusMessage) {
+            statusMessage.textContent = 'An unexpected error occurred. Please check your console.';
+            statusMessage.style.color = 'red';
+        } else {
+            alert('An unexpected error occurred. Please try again.');
+        }
+     } finally {
         formBtn.textContent = 'Send Message';
         formBtn.disabled = false;
+        if(statusMessage) {
+           setTimeout(() => statusMessage.textContent = '', 5000); 
+        }
     }
 });
 

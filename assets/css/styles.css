@@ -1,6 +1,7 @@
 /*===== GOOGLE FONTS =====*/
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 /*===== VARIABLES CSS =====*/
+ 
 :root {
   --header-height: 3rem;
   --font-semi: 600;
@@ -94,6 +95,10 @@ section {
 /*===== NAV =====*/
 
 /* ===== NAVIGATION BAR ===== */
+
+
+
+
 .nav {
   height: var(--header-height);
   display: flex;
@@ -132,13 +137,13 @@ section {
 
 .nav__link {
   position: relative;
-  color: rgb(234, 232, 245);
+  color: #FFFFFF;
   text-decoration: none;
   font-weight: 500;
 }
 
 .nav__link:hover {
-  color: #f7f6f3; 
+  color: #FCD75D; 
 }
 
 .nav__link:hover::after {
@@ -385,9 +390,20 @@ section {
   color: #1287c5;
 }
 #riya-name {
-  transition: color 1s ease;
+  transition: color 0.5s ease-in-out;  
   font-size: 2.2rem;
 }
+
+#typed-text {
+  font-family: "Poppins", sans-serif;
+  font-size: 30px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #06b6d4, #7c3aed);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 
 
 .about__text {
@@ -987,9 +1003,7 @@ body {
   .nav__toggle {
     display: none;
   }
-  .nav__link {
-    color: var(--second-color);
-  }
+
   .home {
     padding: 8rem 0 2rem;
   }
