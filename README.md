@@ -43,7 +43,7 @@ This project strictly adheres to the core front-end technology requirement, usin
 ### Live Demo
 
 The finished project is hosted and available for live viewing here:
-➡️ **[INSERT YOUR LIVE NETLIFY/GITHUB PAGES LINK HERE]**
+➡️ **[https://riyarani23.github.io/Interactive-Digital-Portfolio/]**
 
 ### Local Setup
 
@@ -51,7 +51,7 @@ To run this project locally on your machine:
 
 1.  **Clone the Repository:**
     ```bash
-    git clone [https://github.com/RiyaRani23/Interactive-Digital-Portfolio.git](https://github.com/RiyaRani23/Interactive-Digital-Portfolio.git)
+    git clone (https://github.com/RiyaRani23/Interactive-Digital-Portfolio.git)
     ```
 2.  **Navigate to the Directory:**
     ```bash
