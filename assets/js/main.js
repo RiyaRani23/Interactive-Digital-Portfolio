@@ -120,22 +120,18 @@ const skillsBars = document.querySelectorAll(".skills__bar");
 const observerOptions = {
   root: null,
   rootMargin: "0px",
-  threshold: 0.5 // Trigger when 50% of the element is visible
+  threshold: 0.5 
 };
-
 const observer = new IntersectionObserver((entries, observer) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       const skillBar = entry.target;
       const skillLevel = skillBar.getAttribute("data-skill-level");
       skillBar.style.width = skillLevel + "%";
-      // Stop observing after the animation to prevent re-triggering
       observer.unobserve(skillBar);
     }
   });
 }, observerOptions);
-
-// Start observing each skill bar
 skillsBars.forEach(bar => {
   observer.observe(bar);
 });
